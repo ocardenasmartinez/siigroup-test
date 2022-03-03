@@ -40,6 +40,11 @@ public class StudentController {
     public Student readStudentsByName(@RequestParam String name){
         return studentService.readStudentsByName(name);
     }
+
+    @RequestMapping(value = "readstudentswitha", method = RequestMethod.GET)
+    public List<Student> readStudentsWithA(){
+        return studentService.readStudentsWithA();
+    }
     
  
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -34,6 +35,11 @@ public class StudentService {
         return studentRepository.findByName(name);
     }
 
+    public List<Student> readStudentsWithA() {
+        return studentRepository.findAll().stream()
+                .filter(student -> student.getName().charAt(0) == 'a')
+                .collect(Collectors.toList());
+    }
 
 
     public List<Student> readStudents(){
