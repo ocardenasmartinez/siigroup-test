@@ -1,5 +1,6 @@
 package com.SQLite.SB.example.service;
 
+import com.SQLite.SB.example.dtos.StudentOut;
 import com.SQLite.SB.example.entity.Student;
 import com.SQLite.SB.example.repository.StudentRepository;
 
@@ -50,14 +51,25 @@ public class StudentService {
     public List<Integer> deleteById() {
         var count = new ArrayList<Integer>();
         studentRepository.findAll().stream()
-                .filter(student -> student.getId() > 3)
                 .map(Student::getId)
+                .filter(id -> id > 3)
                 .collect(Collectors.toList())
                 .forEach(id -> {
                     count.add(id);
                     studentRepository.deleteById(id);
                 });
         return count;
+    }
+
+    public List<StudentOut> getNewStudents() {
+        var newStudents = new ArrayList<StudentOut>();
+        studentRepository.findAll().forEach(student -> {
+            var newStudent = new StudentOut();
+            newStudent.setEmail(student.getEmail());
+            newStudent.setName(student.getName());
+            newStudents.add(newStudent);
+        });
+        return newStudents;
     }
 
     @Transactional

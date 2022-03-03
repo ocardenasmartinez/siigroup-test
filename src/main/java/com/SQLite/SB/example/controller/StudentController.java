@@ -1,5 +1,6 @@
 package com.SQLite.SB.example.controller;
 
+import com.SQLite.SB.example.dtos.StudentOut;
 import com.SQLite.SB.example.entity.Student;
 import com.SQLite.SB.example.service.StudentService;
 
@@ -48,6 +49,11 @@ public class StudentController {
     @RequestMapping(value = "deletestudents", method = RequestMethod.DELETE)
     public List<Integer> deleteStudents(){
         return studentService.deleteById();
+    }
+
+    @RequestMapping(value = "readnewstudents", method = RequestMethod.GET)
+    public List<StudentOut> readNewStudents(){
+        return studentService.getNewStudents();
     }
     
  
