@@ -40,7 +40,7 @@ public class StudentService {
 
     public List<Student> readStudentsWithA() {
         return studentRepository.findAll().stream()
-                .filter(student -> student.getName().charAt(0) == 'a')
+                .filter(student -> student.getName().charAt(0) == 'A')
                 .collect(Collectors.toList());
     }
 
