@@ -16,6 +16,8 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     boolean existsByName(String name);
 
     List<Student> findByEmail(String email);
+
+    Student findByName(String name);
     
     @Query("select max(s.id) from Student s")
     Integer findMaxId();

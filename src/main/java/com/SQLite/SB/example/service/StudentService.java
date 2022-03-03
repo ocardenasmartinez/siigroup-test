@@ -30,6 +30,12 @@ public class StudentService {
         }
     }
 
+    public Student readStudentsByName(String name) {
+        return studentRepository.findByName(name);
+    }
+
+
+
     public List<Student> readStudents(){
         return studentRepository.findAll();
     }

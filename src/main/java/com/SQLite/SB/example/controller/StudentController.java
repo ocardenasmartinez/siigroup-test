@@ -4,10 +4,7 @@ import com.SQLite.SB.example.entity.Student;
 import com.SQLite.SB.example.service.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +34,11 @@ public class StudentController {
     @RequestMapping(value = "updatestudent", method = RequestMethod.PUT)
     public String updateStudet(@RequestBody Student student){
         return studentService.updateStudent(student);
+    }
+
+    @RequestMapping(value = "readstudentsbyname", method = RequestMethod.GET)
+    public Student readStudentsByName(@RequestParam String name){
+        return studentService.readStudentsByName(name);
     }
     
  
