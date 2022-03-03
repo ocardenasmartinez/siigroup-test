@@ -13,11 +13,11 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     boolean existsByEmail(String email);
 
-    boolean existsByName(String name);
-
     List<Student> findByEmail(String email);
 
     Student findByName(String name);
+
+    long deleteById(int id);
     
     @Query("select max(s.id) from Student s")
     Integer findMaxId();

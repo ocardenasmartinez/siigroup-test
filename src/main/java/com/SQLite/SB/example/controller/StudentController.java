@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/example")
@@ -44,6 +43,11 @@ public class StudentController {
     @RequestMapping(value = "readstudentswitha", method = RequestMethod.GET)
     public List<Student> readStudentsWithA(){
         return studentService.readStudentsWithA();
+    }
+
+    @RequestMapping(value = "deletestudents", method = RequestMethod.DELETE)
+    public List<Integer> deleteStudents(){
+        return studentService.deleteById();
     }
     
  

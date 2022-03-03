@@ -6,7 +6,9 @@ import com.SQLite.SB.example.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,12 +43,22 @@ public class StudentService {
                 .collect(Collectors.toList());
     }
 
-
     public List<Student> readStudents(){
         return studentRepository.findAll();
     }
-    
-  
+
+    public List<Integer> deleteById() {
+        var count = new ArrayList<Integer>();
+        studentRepository.findAll().stream()
+                .filter(student -> student.getId() > 3)
+                .map(Student::getId)
+                .collect(Collectors.toList())
+                .forEach(id -> {
+                    count.add(id);
+                    studentRepository.deleteById(id);
+                });
+        return count;
+    }
 
     @Transactional
     public String updateStudent(Student student){
